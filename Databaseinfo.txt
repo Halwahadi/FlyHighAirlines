@@ -1,0 +1,71 @@
+/*Database Info:
+*Tables created in mySQL
+*/
+
+CREATE TABLE passenger(
+	pass_id INT PRIMARY KEY,
+	first_name VARCHAR(25) ,
+	last_name VARCHAR(25),
+	birthday DATE,
+	sex VARCHAR(1),
+	phone_number VARCHAR(10),
+	address_number VARCHAR(10),
+	street_name VARCHAR(40),
+	city VARCHAR(25),
+	state VARCHAR(30),
+	zipcode VARCHAR(5)
+);
+
+CREATE TABLE flight(
+	flight_id INT PRIMARY KEY,
+	destination_city VARCHAR(25),
+	destination_state VARCHAR(30),
+	departure_date DATE,
+	departure_time TIME,
+	arrival_date DATE,
+	arrival_time TIME
+);
+
+CREATE TABLE ticket(
+	ticket_id INT PRIMARY KEY,
+	flight_id INT REFERENCES flight(flight_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	pass_id INT REFERENCES passenger(pass_id),
+);
+
+CREATE TABLE seat(
+	seat_id VARCHAR(4) PRIMARY KEY,
+	seat_type VARCHAR(25),
+	taken BOOLEAN,
+	flight_id INT,
+	FOREIGN KEY (flight_id) REFERENCES flight(flight_id)
+);
+
+ALTER TABLE ticket
+ADD seat_id;
+
+ALTER TABLE ticket
+ADD FOREIGN KEY (seat_id)
+REFERENCES seat(seat_id);
+
+//keep track of already taken seats using a trigger to update the status of a seat when a ticket is made
+
+DELIMITER $$
+
+CREATE TRIGGER updateSeat
+AFTER INSERT ON ticket
+FOR EACH ROW
+BEGIN
+UPDATE seat SET seat.taken = true
+WHERE Seat.seat_id = new.seat_id;
+
+END $$
+
+CREATE TRIGGER updateSeatFalse
+BEFORE DELETE ON ticket
+FOR EACH ROW
+BEGIN
+UPDATE seat SET take = false WHERE seat_id = old.seat_id;
+
+END$$
+
+DELIMITER ;

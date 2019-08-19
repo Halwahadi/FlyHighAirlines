@@ -9,12 +9,19 @@ This is a project I am currently working on so all the information is slowly bei
 To Do: (X means completed)
 
 X Create Database in mySQL
+
 X Connect Database to Java Project
+
 X Passenger()
+
   x Enter passenger
+  
   x Retrieve passenger
+  
   x Update Passenger
+  
   x Delete Passenger
+  
 - Book Flight()
 - Get Ticket()
   -Discard Ticket

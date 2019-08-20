@@ -69,3 +69,10 @@ UPDATE seat SET take = false WHERE seat_id = old.seat_id;
 END$$
 
 DELIMITER ;
+
+//created a table of state names and alias and code (1,2, or 3) as it's location relates to Georgia 
+CREATE TABLE states(
+	state_name VARCHAR(40) PRIMARY KEY,
+	state_code INT,
+	alias VARCHAR(2)
+);

@@ -22,8 +22,6 @@ CREATE TABLE flight(
 	destination_state VARCHAR(30),
 	departure_date DATE,
 	departure_time TIME,
-	arrival_date DATE,
-	arrival_time TIME
 );
 
 CREATE TABLE ticket(

@@ -70,9 +70,10 @@ END$$
 
 DELIMITER ;
 
-//created a table of state names and alias and code (1,2, or 3) as it's location relates to Georgia 
+//created a table of state names and alias and code (1,2, or 3) as it's location relates to Georgia, and the number of the state
 CREATE TABLE states(
-	state_name VARCHAR(40) PRIMARY KEY,
+	state_name VARCHAR(40),
 	state_code INT,
-	alias VARCHAR(2)
+	alias VARCHAR(2),
+	number INT PRIMARY KEY
 );

@@ -22,6 +22,10 @@ X Passenger()
   
   x Delete Passenger
   
-- Book Flight()
+- Flight()
+  - bookFlight
+  x view Flight
+  - edit Flight
+  x delete Flight
 - Get Ticket()
   -Discard Ticket
